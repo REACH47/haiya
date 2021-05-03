@@ -69,7 +69,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1> Excalidraw Example</h1>
+      <h1>Haiya!</h1>
       <Sidebar>
         <div className="button-wrapper">
           <button className="update-scene" onClick={updateScene}>

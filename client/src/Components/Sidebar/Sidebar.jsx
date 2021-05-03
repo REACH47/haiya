@@ -10,8 +10,8 @@ export default function Sidebar(props) {
         <button className="closebtn" onClick={() => setOpen(false)}>
           x
         </button>
-        <a href="#">Dummy Home</a>
-        <a href="#">Dummy About</a>{" "}
+        <a href="#">Home</a>
+        <a href="#">About</a>
       </div>
       <div className={`${open ? "sidebar-open" : ""}`}>
         <button
