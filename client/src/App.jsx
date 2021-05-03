@@ -5,6 +5,7 @@ import { AuthProvider } from "./Contexts/AuthContext";
 import Welcome from "./Components/Welcome/Welcome";
 import Signup from "./Components/Signup/Signup";
 import DrawCard from "./Components/DrawCard";
+import Login from "./Components/Login/Login";
 
 function App() {
   return (
@@ -20,6 +21,16 @@ function App() {
               >
                 <div className="w-100" style={{ maxWidth: "400px" }}>
                   <Signup />
+                </div>
+              </Container>
+            </Route>
+            <Route path="/login">
+              <Container
+                className="d-flex align-items-center justify-content-center"
+                style={{ minHeight: "100vh" }}
+              >
+                <div className="w-100" style={{ maxWidth: "400px" }}>
+                  <Login />
                 </div>
               </Container>
             </Route>
