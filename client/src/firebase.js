@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyAniQfDKfEfHrbnHf3Gow8gAwuBVrTg-Gk",
@@ -11,5 +12,10 @@ const app = firebase.initializeApp({
   appId: "1:12927986685:web:7046cd2bbcaa74d3d7c794",
 });
 
+const firestore = app.firestore();
+export const database = {
+  files: firestore.collection("files"),
+  getCurrentTimestamp: firebase.firestore.FieldValue.serverTimestamp,
+};
 export const auth = app.auth();
 export default app;

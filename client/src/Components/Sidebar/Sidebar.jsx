@@ -1,8 +1,24 @@
 import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../../Contexts/AuthContext";
 import "./Sidebar.scss";
 
 export default function Sidebar(props) {
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
+
+  async function handleLogout() {
+    setError("");
+
+    try {
+      await logout();
+      history.push("/login");
+    } catch {
+      setError("Failed to log out");
+    }
+  }
 
   return (
     <>
@@ -10,8 +26,10 @@ export default function Sidebar(props) {
         <button className="closebtn" onClick={() => setOpen(false)}>
           x
         </button>
-        <a href="#">Home</a>
-        <a href="#">About</a>
+        <Link to="/dashboard">
+          <button>Home</button>
+        </Link>
+        <button onClick={handleLogout}>Good Bye!</button>
       </div>
       <div className={`${open ? "sidebar-open" : ""}`}>
         <button

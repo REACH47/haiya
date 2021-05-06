@@ -1,25 +1,47 @@
 import React, { useEffect, useState, useRef } from "react";
-import Excalidraw, {
-  exportToCanvas,
-  exportToSvg,
-  exportToBlob,
-} from "@excalidraw/excalidraw";
+import Excalidraw, { exportToSvg } from "@excalidraw/excalidraw";
+import { database } from "../firebase";
+import { Form, Button, Modal } from "react-bootstrap";
 import InitialData from "./initialData.js";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import "./DrawCard.scss";
-import initialData from "./initialData.js";
+import { useAuth } from "../Contexts/AuthContext";
 
-export default function App() {
+export default function App({ currentFile }) {
   const excalidrawRef = useRef(null);
 
   const [viewModeEnabled, setViewModeEnabled] = useState(false);
   const [zenModeEnabled, setZenModeEnabled] = useState(false);
   const [gridModeEnabled, setGridModeEnabled] = useState(false);
-  const [blobUrl, setBlobUrl] = useState(null);
-  const [canvasUrl, setCanvasUrl] = useState(null);
   const [exportWithDarkMode, setExportWithDarkMode] = useState(false);
-  const [shouldAddWatermark, setShouldAddWatermark] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const { currentUser } = useAuth();
+
+  function openModal() {
+    setOpen(true);
+  }
+
+  function closeModal() {
+    setOpen(false);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (currentFile == null) return;
+
+    database.files.add({
+      file: name,
+      parentId: currentFile.id,
+      userId: currentUser.uid,
+      // path,
+      createdAt: database.getCurrentTimestamp(),
+    });
+    setName("");
+    closeModal();
+  }
 
   useEffect(() => {
     const onHashChange = () => {
@@ -35,53 +57,18 @@ export default function App() {
     };
   }, []);
 
-  const updateScene = () => {
-    const sceneData = {
-      elements: [
-        {
-          type: "rectangle",
-          version: 141,
-          versionNonce: 361174001,
-          isDeleted: false,
-          id: "oDVXy8D6rom3H1-LLH2-f",
-          fillStyle: "hachure",
-          strokeWidth: 1,
-          strokeStyle: "solid",
-          roughness: 1,
-          opacity: 100,
-          angle: 0,
-          x: 100.50390625,
-          y: 93.67578125,
-          strokeColor: "#c92a2a",
-          backgroundColor: "transparent",
-          width: 186.47265625,
-          height: 141.9765625,
-          seed: 1968410350,
-          groupIds: [],
-        },
-      ],
-      appState: {
-        viewBackgroundColor: "#edf2ff",
-      },
-    };
-    excalidrawRef.current.updateScene(sceneData);
-  };
-
   return (
     <div className="App">
       <h1>Haiya!</h1>
       <Sidebar>
         <div className="button-wrapper">
-          <button className="update-scene" onClick={updateScene}>
-            Update Scene
-          </button>
           <button
             className="reset-scene"
             onClick={() => {
               excalidrawRef.current.resetScene();
             }}
           >
-            Reset Scene
+            Reset Card
           </button>
           <label>
             <input
@@ -89,7 +76,7 @@ export default function App() {
               checked={viewModeEnabled}
               onChange={() => setViewModeEnabled(!viewModeEnabled)}
             />
-            View mode
+            Clear Toolbox
           </label>
           <label>
             <input
@@ -97,7 +84,7 @@ export default function App() {
               checked={zenModeEnabled}
               onChange={() => setZenModeEnabled(!zenModeEnabled)}
             />
-            Zen mode
+            Free Draw
           </label>
           <label>
             <input
@@ -119,7 +106,7 @@ export default function App() {
                 setTheme(newTheme);
               }}
             />
-            Switch to Dark Theme
+            Chalkboard
           </label>
         </div>
         <div className="excalidraw-wrapper">
@@ -151,69 +138,32 @@ export default function App() {
             />
             Export with dark mode
           </label>
-          <label className="export-wrapper__checkbox">
-            <input
-              type="checkbox"
-              checked={shouldAddWatermark}
-              onChange={() => setShouldAddWatermark(!shouldAddWatermark)}
-            />
-            Add Watermark
-          </label>
-          <button
-            onClick={() => {
-              const svg = exportToSvg({
-                elements: excalidrawRef.current.getSceneElements(),
-                appState: {
-                  ...initialData.appState,
-                  exportWithDarkMode,
-                  shouldAddWatermark,
-                },
-              });
-              document.querySelector(".export-svg").innerHTML = svg.outerHTML;
-            }}
-          >
-            Export to SVG
+          <button type="submit" onClick={openModal}>
+            Save Card
           </button>
-          <div className="export export-svg"></div>
-
-          <button
-            onClick={async () => {
-              const blob = await exportToBlob({
-                elements: excalidrawRef.current.getSceneElements(),
-                mimeType: "image/png",
-                appState: {
-                  ...initialData.appState,
-                  exportWithDarkMode,
-                  shouldAddWatermark,
-                },
-              });
-              setBlobUrl(window.URL.createObjectURL(blob));
-            }}
-          >
-            Export to Blob
-          </button>
-          <div className="export export-blob">
-            <img src={blobUrl} alt="" />
-          </div>
-
-          <button
-            onClick={() => {
-              const canvas = exportToCanvas({
-                elements: excalidrawRef.current.getSceneElements(),
-                appState: {
-                  ...initialData.appState,
-                  exportWithDarkMode,
-                  shouldAddWatermark,
-                },
-              });
-              setCanvasUrl(canvas.toDataURL());
-            }}
-          >
-            Export to Canvas
-          </button>
-          <div className="export export-canvas">
-            <img src={canvasUrl} alt="" />
-          </div>
+          <Modal show={open} onHide={closeModal}>
+            <Form onSubmit={handleSubmit}>
+              <Modal.Body>
+                <Form.Group>
+                  <Form.Label>Card Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </Form.Group>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={closeModal}>
+                  No thanks
+                </Button>
+                <Button variant="success" type="submit">
+                  Save it!
+                </Button>
+              </Modal.Footer>
+            </Form>
+          </Modal>
         </div>
       </Sidebar>
     </div>
