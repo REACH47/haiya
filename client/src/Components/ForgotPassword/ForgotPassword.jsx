@@ -2,6 +2,9 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Contexts/AuthContext";
+import mono from "../../Assets/background/mono-bg.mp4";
+import logo from "../../Assets/images/logo.svg";
+import "../../Components/ForgotPassword/ForgotPassword.scss";
 
 export default function ForgotPassword() {
   const emailRef = useRef();
@@ -27,28 +30,51 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <Card>
+      <div>
+        <div>
+          <video playsinline autoPlay muted>
+            <source src={mono} type="video/mp4" />
+          </video>
+        </div>
         <Card.Body>
-          <h1 className="text-center mb-3">Say Haiya!</h1>
-          <h4 className="text-center mb-4">Reset Password</h4>
+          <img className="ml-3 mb-0" src={logo} />
+          <h2 className="text-center mb-4">reset password</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {message && <Alert variant="success">{message}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="text-left" id="email">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="label">Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button
+              variant="dark "
+              disabled={loading}
+              className="w-100 button"
+              type="submit"
+            >
               Reset Password
             </Button>
           </Form>
-          <div className="w-100 text-center mt-3">
-            <Link to="/login">Log In</Link>
+          <div className="w-100 text-center mt-3 account-text">
+            <Link className="log-in" to="/login">
+              log in
+            </Link>
           </div>
         </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up!</Link>
+      </div>
+      <div className="w-100 text-center mt-2 account-text">
+        <h4>need an account ?</h4>
+        <Link className="signup-link" to="/signup">
+          <section class="animation">
+            <a>
+              <span className="text">sign up</span>
+              <span className="line -right"></span>
+              <span className="line -top"></span>
+              <span className="line -left"></span>
+              <span className="line -bottom"></span>
+            </a>
+          </section>
+        </Link>
       </div>
     </>
   );

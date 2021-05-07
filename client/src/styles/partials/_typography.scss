@@ -1,4 +1,4 @@
-// regular
+// Tangerine regular
 @font-face {
   font-family: "Tangerine";
   src: url("../../Assets/fonts/Tangerine-Regular.ttf") format("truetype");
@@ -6,10 +6,26 @@
   font-style: normal;
 }
 
-// bold
+// Tangerine bold
 @font-face {
   font-family: "Tangerine";
   src: url("../../Assets/fonts/Tangerine-Bold.ttf") format("truetype");
   font-weight: 500;
+  font-style: normal;
+}
+
+// Warnes regular
+@font-face {
+  font-family: "Warnes";
+  src: url("../../Assets/fonts/Warnes.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+// Bilbo regular
+@font-face {
+  font-family: "Bilbo";
+  src: url("../../Assets/fonts/Bilbo.ttf") format("truetype");
+  font-weight: 300;
   font-style: normal;
 }
