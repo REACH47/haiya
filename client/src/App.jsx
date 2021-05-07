@@ -16,6 +16,7 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import DrawCard from "./Components/DrawCard";
 import UpdateProfile from "./Components/UpdateProfile/UpdateProfile";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import "./styles/global.scss";
 
 function App() {
   return (

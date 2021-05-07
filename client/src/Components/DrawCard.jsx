@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
-import Excalidraw, { exportToSvg } from "@excalidraw/excalidraw";
+import Excalidraw from "@excalidraw/excalidraw";
 import { database } from "../firebase";
 import { Form, Button, Modal } from "react-bootstrap";
 import InitialData from "./initialData.js";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import "./DrawCard.scss";
 import { useAuth } from "../Contexts/AuthContext";
+import { io } from "socket.io-client";
 
 export default function App({ currentFile }) {
   const excalidrawRef = useRef(null);
-
   const [viewModeEnabled, setViewModeEnabled] = useState(false);
   const [zenModeEnabled, setZenModeEnabled] = useState(false);
   const [gridModeEnabled, setGridModeEnabled] = useState(false);
@@ -18,6 +18,18 @@ export default function App({ currentFile }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const { currentUser } = useAuth();
+  const [socket, setSocket] = useState();
+
+  useEffect(() => {
+    const s = io("http://localhost:8080");
+    setSocket(s);
+
+    return () => {
+      s.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {});
 
   function openModal() {
     setOpen(true);
@@ -42,20 +54,6 @@ export default function App({ currentFile }) {
     setName("");
     closeModal();
   }
-
-  useEffect(() => {
-    const onHashChange = () => {
-      const hash = new URLSearchParams(window.location.hash.slice(1));
-      const libraryUrl = hash.get("addLibrary");
-      if (libraryUrl) {
-        excalidrawRef.current.importLibrary(libraryUrl, hash.get("token"));
-      }
-    };
-    window.addEventListener("hashchange", onHashChange, false);
-    return () => {
-      window.removeEventListener("hashchange", onHashChange);
-    };
-  }, []);
 
   return (
     <div className="App">

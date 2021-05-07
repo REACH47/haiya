@@ -1,0 +1,6 @@
+@use "./Partials/variables" as *;
+@use "./Partials/typography" as *;
+
+body {
+  font-family: $default;
+}
