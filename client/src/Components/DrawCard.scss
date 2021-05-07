@@ -1,6 +1,16 @@
+@use '../styles/partials/variables' as *;
+
 .App {
-  font-family: sans-serif;
+  font-family: $fred;
   text-align: center;
+
+  &__logo {
+    margin-top: 4rem;
+  }
+
+  &__option {
+    margin-right: 1rem;
+  }
 }
 
 .button-wrapper button {

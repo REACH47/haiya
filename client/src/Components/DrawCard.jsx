@@ -7,6 +7,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 import "./DrawCard.scss";
 import { useAuth } from "../Contexts/AuthContext";
 import { io } from "socket.io-client";
+import logo from "../Assets/images/logo.svg";
 
 export default function App({ currentFile }) {
   const excalidrawRef = useRef(null);
@@ -57,7 +58,7 @@ export default function App({ currentFile }) {
 
   return (
     <div className="App">
-      <h1>Haiya!</h1>
+      <img className="App__logo" src={logo} alt="haiya!" />
       <Sidebar>
         <div className="button-wrapper">
           <button
@@ -66,33 +67,33 @@ export default function App({ currentFile }) {
               excalidrawRef.current.resetScene();
             }}
           >
-            Reset Card
+            reset card
           </button>
-          <label>
+          <label className="App__option">
             <input
               type="checkbox"
               checked={viewModeEnabled}
               onChange={() => setViewModeEnabled(!viewModeEnabled)}
             />
-            Clear Toolbox
+            clear toolbox
           </label>
-          <label>
+          <label className="App__option">
             <input
               type="checkbox"
               checked={zenModeEnabled}
               onChange={() => setZenModeEnabled(!zenModeEnabled)}
             />
-            Free Draw
+            free draw
           </label>
-          <label>
+          <label className="App__option">
             <input
               type="checkbox"
               checked={gridModeEnabled}
               onChange={() => setGridModeEnabled(!gridModeEnabled)}
             />
-            Grid mode
+            grid mode
           </label>
-          <label>
+          <label className="App__option">
             <input
               type="checkbox"
               checked={theme === "dark"}
@@ -104,7 +105,7 @@ export default function App({ currentFile }) {
                 setTheme(newTheme);
               }}
             />
-            Chalkboard
+            chalkboard
           </label>
         </div>
         <div className="excalidraw-wrapper">
