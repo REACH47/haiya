@@ -23,8 +23,13 @@ function App() {
     <>
       <Router>
         <Switch>
+          <Route path="/" exact>
+            <Redirect to="/welcome" />
+          </Route>
+
+          <Route path="/welcome" component={Welcome} />
+
           <AuthProvider>
-            <Route path="/" exact component={Welcome} />
             <Route path="/signup">
               <Container
                 className="d-flex align-items-center justify-content-center"

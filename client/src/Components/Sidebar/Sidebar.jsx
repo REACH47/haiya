@@ -27,9 +27,9 @@ export default function Sidebar(props) {
           x
         </button>
         <Link to="/dashboard">
-          <button>Home</button>
+          <button>home</button>
         </Link>
-        <button onClick={handleLogout}>Good Bye!</button>
+        <button onClick={handleLogout}>good bye!</button>
       </div>
       <div className={`${open ? "sidebar-open" : ""}`}>
         <button
@@ -38,7 +38,7 @@ export default function Sidebar(props) {
             setOpen(!open);
           }}
         >
-          Open Sidebar
+          MENU
         </button>
         {props.children}
       </div>

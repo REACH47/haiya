@@ -8,6 +8,7 @@ import "./DrawCard.scss";
 import { useAuth } from "../Contexts/AuthContext";
 import { io } from "socket.io-client";
 import logo from "../Assets/images/logo.svg";
+import Emailer from "../Components/Emailer/Emailer";
 
 export default function App({ currentFile }) {
   const excalidrawRef = useRef(null);
@@ -19,7 +20,7 @@ export default function App({ currentFile }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const { currentUser } = useAuth();
-  const [socket, setSocket] = useState();
+  const [s, setSocket] = useState();
 
   useEffect(() => {
     const s = io("http://localhost:8080");
@@ -29,8 +30,6 @@ export default function App({ currentFile }) {
       s.disconnect();
     };
   }, []);
-
-  useEffect(() => {});
 
   function openModal() {
     setOpen(true);
@@ -138,8 +137,9 @@ export default function App({ currentFile }) {
             Export with dark mode
           </label>
           <button type="submit" onClick={openModal}>
-            Save Card
+            SAVE CARD
           </button>
+          <Emailer />
           <Modal show={open} onHide={closeModal}>
             <Form onSubmit={handleSubmit}>
               <Modal.Body>

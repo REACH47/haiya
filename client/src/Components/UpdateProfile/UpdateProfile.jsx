@@ -16,6 +16,8 @@ export default function UpdateProfile() {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
+    } else if (passwordRef.current.value.length <= 5) {
+      return setError("Passwords must be at least 6 characters");
     }
 
     const promises = [];
@@ -45,7 +47,7 @@ export default function UpdateProfile() {
       <Card>
         <Card.Body>
           <h1 className="text-center mb-3">Update Your Profile</h1>
-          {error && <Alert variant="danger">{error}</Alert>}
+          {error && <Alert variant="dark">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="text-left" id="email">
               <Form.Label>Email</Form.Label>

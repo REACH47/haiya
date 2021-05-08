@@ -39,7 +39,7 @@ export default function Login() {
         <Card.Body>
           <img className="ml-3 mb-0" src={logo} />
           <h2 className="text-right mb-4">log in</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
+          {error && <Alert variant="dark">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="text-left" id="email">
               <Form.Label className="label">email</Form.Label>

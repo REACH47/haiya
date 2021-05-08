@@ -175,6 +175,7 @@ $color: $white;
 
   &__link {
     color: black;
+    transition: 0.5s ease-in-out;
 
     &:hover {
       transition: 0.5s ease-in-out;
@@ -185,6 +186,7 @@ $color: $white;
 
   &__log-animation {
     color: black;
+    transition: 0.5s ease-in-out;
 
     &:hover {
       transition: 0.5s ease-in-out;

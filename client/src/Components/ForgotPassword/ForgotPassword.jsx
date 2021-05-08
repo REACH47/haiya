@@ -39,8 +39,8 @@ export default function ForgotPassword() {
         <Card.Body>
           <img className="ml-3 mb-0" src={logo} />
           <h2 className="text-center mb-4">reset password</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          {message && <Alert variant="success">{message}</Alert>}
+          {error && <Alert variant="dark">{error}</Alert>}
+          {message && <Alert variant="dark">{message}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="text-left" id="email">
               <Form.Label className="label">Email</Form.Label>
