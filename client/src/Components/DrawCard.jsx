@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Excalidraw from "@excalidraw/excalidraw";
-import { database } from "../firebase";
-import { Form, Button, Modal } from "react-bootstrap";
+import { database, storage } from "../firebase";
+import { Form, Button, Modal, Image } from "react-bootstrap";
 import InitialData from "./initialData.js";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import "./DrawCard.scss";
@@ -19,6 +19,8 @@ export default function App({ currentFile }) {
   const [theme, setTheme] = useState("light");
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
+  const [file, setFile] = useState(null);
+  const [url, setURL] = useState("");
   const { currentUser } = useAuth();
   const [s, setSocket] = useState();
 
@@ -39,20 +41,40 @@ export default function App({ currentFile }) {
     setOpen(false);
   }
 
-  function handleSubmit(e) {
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+
+  //   if (currentFile == null) return;
+
+  //   database.files.add({
+  //     file: name,
+  //     parentId: currentFile.id,
+  //     userId: currentUser.uid,
+  //     // path,
+  //     createdAt: database.getCurrentTimestamp(),
+  //     url: currentUser.uid,
+  //   });
+  //   setName("");
+  //   closeModal();
+  // }
+
+  function handleChange(e) {
+    setFile(e.target.files[0]);
+  }
+
+  function handleUpload(e) {
     e.preventDefault();
-
-    if (currentFile == null) return;
-
-    database.files.add({
-      file: name,
-      parentId: currentFile.id,
-      userId: currentUser.uid,
-      // path,
-      createdAt: database.getCurrentTimestamp(),
+    const uploadTask = storage.ref(`/images/${file.name}`).put(file);
+    uploadTask.on("state_changed", console.log, console.error, () => {
+      storage
+        .ref("images")
+        .child(file.name)
+        .getDownloadURL()
+        .then((url) => {
+          setFile(null);
+          setURL(url);
+        });
     });
-    setName("");
-    closeModal();
   }
 
   return (
@@ -141,24 +163,20 @@ export default function App({ currentFile }) {
           </button>
           <Emailer />
           <Modal show={open} onHide={closeModal}>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleUpload}>
               <Modal.Body>
                 <Form.Group>
                   <Form.Label>Card Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
+                  <Form.Control type="file" onChange={handleChange} />
                 </Form.Group>
+                <Image className="temp-image" src={url} alt="" fluid />
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={closeModal}>
                   No thanks
                 </Button>
-                <Button variant="success" type="submit">
-                  Save it!
+                <Button disabled={!file} variant="dark" type="submit">
+                  save it!
                 </Button>
               </Modal.Footer>
             </Form>
