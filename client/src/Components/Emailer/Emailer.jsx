@@ -1,38 +1,50 @@
 import React, { useState } from "react";
-import axios from "axios";
+import emailjs from "emailjs-com";
 
 export default function Emailer() {
-  const [sent, setSent] = useState(false);
-  const [text, setText] = useState("");
+  function handleSend(e) {
+    e.preventDefault();
 
-  const handleSend = async () => {
-    setSent(true);
-    try {
-      await axios.post("https://localhost:4000/send_mail", {
-        text,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    emailjs
+      .sendForm(
+        "gmail",
+        "template_z8axtla",
+        e.target,
+        "user_5WVupcNM4zKweyBj3fHC1"
+      )
+      .then(
+        (result) => {
+          alert("email sent");
+        },
+        (error) => {
+          alert("error");
+        }
+      );
+    e.target.reset();
+  }
 
   return (
     <>
-      <div>
-        {!sent ? (
-          <form onSubmit={handleSend}>
-            <input
-              type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
+      <form className="contact-form" onSubmit={handleSend}>
+        <label>email to</label>
+        <input
+          type="email"
+          required
+          name="to_email"
+          placeholder="email of recipient"
+        />
 
-            <button type="submit">send email</button>
-          </form>
-        ) : (
-          <h1>email sent</h1>
-        )}
-      </div>
+        <label>from</label>
+        <input type="text" name="from_name" placeholder="sender's name" />
+
+        <label>haiya! card</label>
+        <input type="url" name="image" placeholder="haiya! card" />
+
+        <textarea name="message" placeholder="leave a note!" />
+        <button type="submit" value="Send">
+          SAY HAIYA!
+        </button>
+      </form>
     </>
   );
 }
