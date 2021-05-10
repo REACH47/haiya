@@ -1,8 +1,19 @@
 @use '../styles/partials/variables' as *;
 
 .App {
+  background-image: url("../Assets/images/murakami.jpg");
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: $fred;
+  color: #fff;
   text-align: center;
+
+  &__logo-container {
+    width: 100%;
+    padding-bottom: 4rem;
+    background-color: #111;
+  }
 
   &__logo {
     margin-top: 4rem;
@@ -14,11 +25,37 @@
 }
 
 .button-wrapper button {
+  border: none;
+  background-color: rgba($color: #fff, $alpha: 0);
   z-index: 1;
   height: 40px;
   max-width: 200px;
   margin: 10px;
   padding: 5px;
+  color: white;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    transition: 0.5s ease-in-out;
+    color: $white;
+  }
+}
+
+.generate {
+  color: white;
+  transition: 0.5s ease-in-out;
+  &:hover {
+    transition: 0.5s ease-in-out;
+    color: $white;
+  }
+}
+
+.checkbox {
+  margin-right: 0.5rem;
+}
+
+.button-wrapper {
+  background-color: #111;
 }
 
 .excalidraw .App-menu_top .buttonList {
@@ -44,7 +81,7 @@
 .export-wrapper {
   display: flex;
   flex-direction: column;
-  margin: 50px;
+  margin: 50px 0 0 0;
 
   &__checkbox {
     display: flex;
@@ -69,4 +106,12 @@
 
 .Dialog__titleContent {
   display: none;
+}
+
+.link-text {
+  font-family: $fred;
+}
+
+.url-link {
+  font-family: $fred;
 }

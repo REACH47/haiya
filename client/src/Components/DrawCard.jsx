@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import Excalidraw from "@excalidraw/excalidraw";
-import { database, storage } from "../firebase";
+import { storage } from "../firebase";
 import { Form, Button, Modal, Image } from "react-bootstrap";
 import InitialData from "./initialData.js";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import "./DrawCard.scss";
 import { useAuth } from "../Contexts/AuthContext";
 import { io } from "socket.io-client";
-import logo from "../Assets/images/logo.svg";
+import logo from "../Assets/images/logo-white.svg";
 import Emailer from "../Components/Emailer/Emailer";
 
 export default function App({ currentFile }) {
@@ -41,23 +41,6 @@ export default function App({ currentFile }) {
     setOpen(false);
   }
 
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   if (currentFile == null) return;
-
-  //   database.files.add({
-  //     file: name,
-  //     parentId: currentFile.id,
-  //     userId: currentUser.uid,
-  //     // path,
-  //     createdAt: database.getCurrentTimestamp(),
-  //     url: currentUser.uid,
-  //   });
-  //   setName("");
-  //   closeModal();
-  // }
-
   function handleChange(e) {
     setFile(e.target.files[0]);
   }
@@ -79,56 +62,64 @@ export default function App({ currentFile }) {
 
   return (
     <div className="App">
-      <img className="App__logo" src={logo} alt="haiya!" />
-      <Sidebar>
-        <div className="button-wrapper">
-          <button
-            className="reset-scene"
-            onClick={() => {
-              excalidrawRef.current.resetScene();
+      <div className="App__logo-container">
+        <img className="App__logo" src={logo} alt="haiya!" />
+      </div>
+
+      <div className="button-wrapper">
+        <button
+          className="reset-scene"
+          onClick={() => {
+            excalidrawRef.current.resetScene();
+          }}
+        >
+          reset card
+        </button>
+        <label className="App__option">
+          <input
+            className="checkbox"
+            type="checkbox"
+            checked={viewModeEnabled}
+            onChange={() => setViewModeEnabled(!viewModeEnabled)}
+          />
+          clear toolbox
+        </label>
+        <label className="App__option">
+          <input
+            className="checkbox"
+            type="checkbox"
+            checked={zenModeEnabled}
+            onChange={() => setZenModeEnabled(!zenModeEnabled)}
+          />
+          free draw
+        </label>
+        <label className="App__option">
+          <input
+            className="checkbox"
+            type="checkbox"
+            checked={gridModeEnabled}
+            onChange={() => setGridModeEnabled(!gridModeEnabled)}
+          />
+          grid mode
+        </label>
+        <label className="App__option">
+          <input
+            className="checkbox"
+            type="checkbox"
+            checked={theme === "dark"}
+            onChange={() => {
+              let newTheme = "light";
+              if (theme === "light") {
+                newTheme = "dark";
+              }
+              setTheme(newTheme);
             }}
-          >
-            reset card
-          </button>
-          <label className="App__option">
-            <input
-              type="checkbox"
-              checked={viewModeEnabled}
-              onChange={() => setViewModeEnabled(!viewModeEnabled)}
-            />
-            clear toolbox
-          </label>
-          <label className="App__option">
-            <input
-              type="checkbox"
-              checked={zenModeEnabled}
-              onChange={() => setZenModeEnabled(!zenModeEnabled)}
-            />
-            free draw
-          </label>
-          <label className="App__option">
-            <input
-              type="checkbox"
-              checked={gridModeEnabled}
-              onChange={() => setGridModeEnabled(!gridModeEnabled)}
-            />
-            grid mode
-          </label>
-          <label className="App__option">
-            <input
-              type="checkbox"
-              checked={theme === "dark"}
-              onChange={() => {
-                let newTheme = "light";
-                if (theme === "light") {
-                  newTheme = "dark";
-                }
-                setTheme(newTheme);
-              }}
-            />
-            chalkboard
-          </label>
-        </div>
+          />
+          chalkboard
+        </label>
+      </div>
+
+      <Sidebar>
         <div className="excalidraw-wrapper">
           <Excalidraw
             ref={excalidrawRef}
@@ -150,16 +141,8 @@ export default function App({ currentFile }) {
         </div>
 
         <div className="export-wrapper button-wrapper">
-          <label className="export-wrapper__checkbox">
-            <input
-              type="checkbox"
-              checked={exportWithDarkMode}
-              onChange={() => setExportWithDarkMode(!exportWithDarkMode)}
-            />
-            Export with dark mode
-          </label>
-          <button type="submit" onClick={openModal}>
-            SAVE CARD
+          <button className="generate" type="submit" onClick={openModal}>
+            generate haiya!
           </button>
           <Emailer />
           <Modal show={open} onHide={closeModal}>
@@ -167,16 +150,22 @@ export default function App({ currentFile }) {
               <Modal.Body>
                 <Form.Group>
                   <Form.Label>Card Name</Form.Label>
-                  <Form.Control type="file" onChange={handleChange} />
+                  <Form.Control
+                    type="file"
+                    onChange={handleChange}
+                    variant="dark"
+                  />
                 </Form.Group>
                 <Image className="temp-image" src={url} alt="" fluid />
+                <h4 className="mt-5 link-text">haiya! card link:</h4>
+                <p className="url-link">{url}</p>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={closeModal}>
-                  No thanks
+                  no thanks
                 </Button>
                 <Button disabled={!file} variant="dark" type="submit">
-                  save it!
+                  make my haiya!
                 </Button>
               </Modal.Footer>
             </Form>

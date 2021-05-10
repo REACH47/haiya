@@ -27,9 +27,11 @@ export default function Sidebar(props) {
           x
         </button>
         <Link to="/dashboard">
-          <button>home</button>
+          <button className="home-btn">home</button>
         </Link>
-        <button onClick={handleLogout}>good bye!</button>
+        <button className="logout-btn" onClick={handleLogout}>
+          good bye!
+        </button>
       </div>
       <div className={`${open ? "sidebar-open" : ""}`}>
         <button
