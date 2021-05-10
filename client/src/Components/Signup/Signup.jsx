@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Contexts/AuthContext";
@@ -36,7 +37,11 @@ export default function Signup() {
   }
 
   return (
-    <>
+    <motion.div
+      initial={{ opactiy: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div>
         <div>
           <video playsinline autoPlay muted>
@@ -89,6 +94,6 @@ export default function Signup() {
           </section>
         </Link>
       </div>
-    </>
+    </motion.div>
   );
 }

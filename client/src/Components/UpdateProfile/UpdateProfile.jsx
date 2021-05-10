@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../Contexts/AuthContext";
 import letters from "../../Assets/background/letters.mp4";
@@ -45,7 +46,11 @@ export default function UpdateProfile() {
   }
 
   return (
-    <>
+    <motion.div
+      initial={{ opactiy: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div>
         <div>
           <video playsinline autoPlay muted loop>
@@ -100,6 +105,6 @@ export default function UpdateProfile() {
           </Form>
         </Card.Body>
       </div>
-    </>
+    </motion.div>
   );
 }

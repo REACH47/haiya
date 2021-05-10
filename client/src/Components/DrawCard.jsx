@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Excalidraw from "@excalidraw/excalidraw";
+import { motion } from "framer-motion";
 import { storage } from "../firebase";
 import { Form, Button, Modal, Image } from "react-bootstrap";
 import InitialData from "./initialData.js";
@@ -61,117 +62,123 @@ export default function App({ currentFile }) {
   }
 
   return (
-    <div className="App">
-      <div className="App__logo-container">
-        <img className="App__logo" src={logo} alt="haiya!" />
-      </div>
+    <motion.div
+      initial={{ opactiy: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="App">
+        <div className="App__logo-container">
+          <img className="App__logo" src={logo} alt="haiya!" />
+        </div>
 
-      <div className="button-wrapper">
-        <button
-          className="reset-scene"
-          onClick={() => {
-            excalidrawRef.current.resetScene();
-          }}
-        >
-          reset card
-        </button>
-        <label className="App__option">
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={viewModeEnabled}
-            onChange={() => setViewModeEnabled(!viewModeEnabled)}
-          />
-          clear toolbox
-        </label>
-        <label className="App__option">
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={zenModeEnabled}
-            onChange={() => setZenModeEnabled(!zenModeEnabled)}
-          />
-          free draw
-        </label>
-        <label className="App__option">
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={gridModeEnabled}
-            onChange={() => setGridModeEnabled(!gridModeEnabled)}
-          />
-          grid mode
-        </label>
-        <label className="App__option">
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={theme === "dark"}
-            onChange={() => {
-              let newTheme = "light";
-              if (theme === "light") {
-                newTheme = "dark";
-              }
-              setTheme(newTheme);
+        <div className="button-wrapper">
+          <button
+            className="reset-scene"
+            onClick={() => {
+              excalidrawRef.current.resetScene();
             }}
-          />
-          chalkboard
-        </label>
-      </div>
-
-      <Sidebar>
-        <div className="excalidraw-wrapper">
-          <Excalidraw
-            ref={excalidrawRef}
-            initialData={InitialData}
-            onChange={(elements, state) =>
-              console.log("Elements :", elements, "State : ", state)
-            }
-            onPointerUpdate={(payload) => console.log(payload)}
-            onCollabButtonClick={() =>
-              window.alert("You clicked on collab button")
-            }
-            viewModeEnabled={viewModeEnabled}
-            zenModeEnabled={zenModeEnabled}
-            gridModeEnabled={gridModeEnabled}
-            theme={theme}
-            name="Custom name of drawing"
-            UIOptions={{ canvasActions: { loadScene: false } }}
-          />
-        </div>
-
-        <div className="export-wrapper button-wrapper">
-          <button className="generate" type="submit" onClick={openModal}>
-            generate haiya! card link
+          >
+            reset card
           </button>
-          <Emailer />
-          <Modal show={open} onHide={closeModal}>
-            <Form onSubmit={handleUpload}>
-              <Modal.Body>
-                <Form.Group>
-                  <Form.Label>Card Name</Form.Label>
-                  <Form.Control
-                    type="file"
-                    onChange={handleChange}
-                    variant="dark"
-                  />
-                </Form.Group>
-                <Image className="temp-image" src={url} alt="" fluid />
-                <h4 className="mt-5 link-text">haiya! card link:</h4>
-                <p className="url-link">{url}</p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={closeModal}>
-                  no thanks
-                </Button>
-                <Button disabled={!file} variant="dark" type="submit">
-                  make my haiya!
-                </Button>
-              </Modal.Footer>
-            </Form>
-          </Modal>
+          <label className="App__option">
+            <input
+              className="checkbox"
+              type="checkbox"
+              checked={viewModeEnabled}
+              onChange={() => setViewModeEnabled(!viewModeEnabled)}
+            />
+            clear toolbox
+          </label>
+          <label className="App__option">
+            <input
+              className="checkbox"
+              type="checkbox"
+              checked={zenModeEnabled}
+              onChange={() => setZenModeEnabled(!zenModeEnabled)}
+            />
+            free draw
+          </label>
+          <label className="App__option">
+            <input
+              className="checkbox"
+              type="checkbox"
+              checked={gridModeEnabled}
+              onChange={() => setGridModeEnabled(!gridModeEnabled)}
+            />
+            grid mode
+          </label>
+          <label className="App__option">
+            <input
+              className="checkbox"
+              type="checkbox"
+              checked={theme === "dark"}
+              onChange={() => {
+                let newTheme = "light";
+                if (theme === "light") {
+                  newTheme = "dark";
+                }
+                setTheme(newTheme);
+              }}
+            />
+            chalkboard
+          </label>
         </div>
-      </Sidebar>
-    </div>
+
+        <Sidebar>
+          <div className="excalidraw-wrapper">
+            <Excalidraw
+              ref={excalidrawRef}
+              initialData={InitialData}
+              onChange={(elements, state) =>
+                console.log("Elements :", elements, "State : ", state)
+              }
+              onPointerUpdate={(payload) => console.log(payload)}
+              onCollabButtonClick={() =>
+                window.alert("You clicked on collab button")
+              }
+              viewModeEnabled={viewModeEnabled}
+              zenModeEnabled={zenModeEnabled}
+              gridModeEnabled={gridModeEnabled}
+              theme={theme}
+              name="Custom name of drawing"
+              UIOptions={{ canvasActions: { loadScene: false } }}
+            />
+          </div>
+
+          <div className="export-wrapper button-wrapper">
+            <button className="generate" type="submit" onClick={openModal}>
+              generate haiya! card link
+            </button>
+            <Emailer />
+            <Modal show={open} onHide={closeModal}>
+              <Form onSubmit={handleUpload}>
+                <Modal.Body>
+                  <Form.Group>
+                    <Form.Label>Card Name</Form.Label>
+                    <Form.Control
+                      type="file"
+                      onChange={handleChange}
+                      variant="dark"
+                    />
+                  </Form.Group>
+                  <Image className="temp-image" src={url} alt="" fluid />
+                  <h4 className="mt-5 link-text">haiya! card link:</h4>
+                  <p className="url-link">{url}</p>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={closeModal}>
+                    no thanks
+                  </Button>
+                  <Button disabled={!file} variant="dark" type="submit">
+                    make my haiya!
+                  </Button>
+                </Modal.Footer>
+              </Form>
+            </Modal>
+          </div>
+        </Sidebar>
+      </div>
+    </motion.div>
   );
 }

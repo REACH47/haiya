@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import canvas from "../../Assets/background/canvas-bg.mp4";
 import logo from "../../Assets/images/logo.svg";
@@ -6,7 +7,12 @@ import "../Welcome/Welcome.scss";
 
 function Welcome() {
   return (
-    <div className="haiya">
+    <motion.div
+      initial={{ opactiy: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="haiya"
+    >
       <video playsinline autoPlay muted loop>
         <source src={canvas} type="video/mp4" />
       </video>
@@ -44,7 +50,7 @@ function Welcome() {
           </h4>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Template from "../Template/Template";
-import { v4 as uuidV4 } from "uuid";
+import { motion } from "framer-motion";
 import { Card, Button, Alert, Image } from "react-bootstrap";
 import { useAuth } from "../../Contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
@@ -25,7 +25,11 @@ export default function Dashboard() {
   }
 
   return (
-    <>
+    <motion.div
+      initial={{ opactiy: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="dashboard">
         <div>
           <video playsinline autoPlay muted loop>
@@ -57,6 +61,6 @@ export default function Dashboard() {
       <div>
         <Template />
       </div>
-    </>
+    </motion.div>
   );
 }
