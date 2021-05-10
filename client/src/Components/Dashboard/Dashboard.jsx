@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Template from "../Template/Template";
 import { v4 as uuidV4 } from "uuid";
-import { Card, Button, Alert } from "react-bootstrap";
+import { Card, Button, Alert, Image } from "react-bootstrap";
 import { useAuth } from "../../Contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import letters from "../../Assets/background/letters.mp4";
+import logo from "../../Assets/images/logo.svg";
+import "../Dashboard/Dashboard.scss";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -24,27 +26,34 @@ export default function Dashboard() {
 
   return (
     <>
-      <div>
+      <div className="dashboard">
         <div>
           <video playsinline autoPlay muted loop>
             <source src={letters} type="video/mp4" />
           </video>
         </div>
         <Card.Body>
-          <h2 className="text-center mb-4">Profile</h2>
+          <div>
+            <Image className="ml-3 mb-4" src={logo} />
+          </div>
           {error && <Alert variant="dark">{error}</Alert>}
-          Haiya, <strong>{currentUser.email}</strong>!
-          <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
+          <div className="mt-3 ml-5 mb-2">
+            <h2 className="dashboard__user">
+              Haiya, <strong>{currentUser.email}</strong>!
+            </h2>
+          </div>
+          <Link to="/update-profile" className="btn btn-dark w-15 mt-2 ml-4">
             Update Profile
           </Link>
+          <Button
+            className="w-15 text-center mt-2 ml-3"
+            variant="dark"
+            onClick={handleLogout}
+          >
+            Good Bye!
+          </Button>
         </Card.Body>
       </div>
-      <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
-          Good Bye!
-        </Button>
-      </div>
-
       <div>
         <Template />
       </div>
