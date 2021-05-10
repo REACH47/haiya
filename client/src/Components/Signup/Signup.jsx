@@ -53,14 +53,17 @@ export default function Signup() {
               <Form.Label className="label">email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
+
             <Form.Group className="text-left" id="password">
               <Form.Label className="label">password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
+
             <Form.Group className="text-left" id="password-confirm">
               <Form.Label className="label">password confirmation</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
+
             <Button
               variant="dark"
               disabled={loading}

@@ -40,8 +40,20 @@ function App() {
                 </div>
               </Container>
             </Route>
+
             <PrivateRoute path="/dashboard" component={Dashboard} />
-            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+
+            <PrivateRoute path="/update-profile">
+              <Container
+                className="d-flex align-items-center justify-content-center"
+                style={{ minHeight: "100vh" }}
+              >
+                <div className="w-100" style={{ maxWidth: "400px" }}>
+                  <UpdateProfile />
+                </div>
+              </Container>
+            </PrivateRoute>
+
             <Route path="/login">
               <Container
                 className="d-flex align-items-center justify-content-center"
@@ -52,6 +64,7 @@ function App() {
                 </div>
               </Container>
             </Route>
+
             <Route path="/forgot-password">
               <Container
                 className="d-flex align-items-center justify-content-center"
@@ -62,6 +75,7 @@ function App() {
                 </div>
               </Container>
             </Route>
+
             <PrivateRoute path="/haiya">
               <Redirect to={`/haiya/${uuidV4()}`} />
             </PrivateRoute>

@@ -1,0 +1,28 @@
+@use '../../styles/partials/variables' as *;
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.update-title {
+  font-family: $bilbo;
+  font-size: 4rem;
+}
+
+h2 {
+  font-family: $default;
+}
+
+.label {
+  font-family: $warnes;
+}
+
+.button {
+  font-family: $warnes;
+}
