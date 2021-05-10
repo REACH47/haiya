@@ -1,10 +1,10 @@
 @use '../styles/partials/variables' as *;
 
 .App {
-  background-image: url("../Assets/images/murakami.jpg");
-  object-fit: cover;
+  background-image: url("../Assets/images/graffiti.jpg");
+  background-size: cover;
   background-position: center;
-  background-repeat: repeat-x;
+  background-repeat: no-repeat;
   font-family: $fred;
   color: #fff;
   text-align: center;
