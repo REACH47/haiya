@@ -23,15 +23,17 @@ export default function Sidebar(props) {
   return (
     <>
       <div id="mySidebar" className={`sidebar ${open ? "open" : ""}`}>
-        <button className="closebtn" onClick={() => setOpen(false)}>
+        <button className="close-btn" onClick={() => setOpen(false)}>
           x
         </button>
-        <Link to="/dashboard">
-          <button className="home-btn">home</button>
-        </Link>
-        <button className="logout-btn" onClick={handleLogout}>
-          good bye!
-        </button>
+        <div className="sidebar-wrapper">
+          <Link to="/dashboard">
+            <button className="home-btn">home</button>
+          </Link>
+          <button className="logout-btn" onClick={handleLogout}>
+            good bye!
+          </button>
+        </div>
       </div>
       <div className={`${open ? "sidebar-open" : ""}`}>
         <button

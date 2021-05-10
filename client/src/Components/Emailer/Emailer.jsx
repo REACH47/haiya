@@ -40,6 +40,7 @@ export default function Emailer() {
       <form className="contact-form" onSubmit={handleSend}>
         <label>email to </label>
         <input
+          className="contact-form__input"
           type="email"
           required
           name="to_email"
@@ -47,12 +48,26 @@ export default function Emailer() {
         />
 
         <label>from </label>
-        <input type="text" name="from_name" placeholder="sender's name" />
+        <input
+          className="contact-form__input"
+          type="text"
+          name="from_name"
+          placeholder="sender's name"
+        />
 
         <label>haiya! card </label>
-        <input type="url" name="image" placeholder="haiya! card" />
+        <input
+          className="contact-form__input"
+          type="url"
+          name="image"
+          placeholder="haiya! card link here"
+        />
 
-        <textarea name="message" placeholder="leave a note!" />
+        <textarea
+          className="contact-form__input"
+          name="message"
+          placeholder="leave a note!"
+        />
         <button
           className="say-haiya"
           type="submit"

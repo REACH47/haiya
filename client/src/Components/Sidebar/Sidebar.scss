@@ -34,7 +34,7 @@
   color: #f1f1f1;
 }
 
-.sidebar .closebtn {
+.sidebar .close-btn {
   position: absolute;
   top: 0;
   right: 0;
@@ -60,4 +60,44 @@
 }
 .sidebar-open {
   margin-left: 300px;
+}
+
+.home-btn {
+  background-color: #111;
+  color: white;
+  border: none;
+  margin: 1.5rem 0;
+  transition: 0.5s ease-in-out;
+  &:hover {
+    transition: 0.5s ease-in-out;
+    color: $white;
+  }
+}
+.logout-btn {
+  background-color: #111;
+  color: white;
+  border: none;
+  transition: 0.5s ease-in-out;
+  &:hover {
+    transition: 0.5s ease-in-out;
+    color: $white;
+  }
+}
+
+.close-btn {
+  background-color: #111;
+  color: white;
+  border: none;
+  transition: 0.5s ease-in-out;
+  &:hover {
+    transition: 0.5s ease-in-out;
+    color: $white;
+  }
+}
+
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 2rem;
 }

@@ -142,7 +142,7 @@ export default function App({ currentFile }) {
 
         <div className="export-wrapper button-wrapper">
           <button className="generate" type="submit" onClick={openModal}>
-            generate haiya!
+            generate haiya! card link
           </button>
           <Emailer />
           <Modal show={open} onHide={closeModal}>
