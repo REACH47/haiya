@@ -32,7 +32,7 @@ function Welcome() {
               </section>
             </Link>
           </div>
-          <h4 className="haiya__login">or</h4>
+          {/* <h4 className="haiya__login">or</h4>
           <h4>
             <div className="haiya__right">
               <Link className="haiya__log-animation" to="/login">
@@ -47,7 +47,7 @@ function Welcome() {
                 </section>
               </Link>
             </div>
-          </h4>
+          </h4> */}
         </div>
       </div>
     </motion.div>

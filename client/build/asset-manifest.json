@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b5fb9e8f.chunk.css",
+    "main.js": "/static/js/main.ac0434dd.chunk.js",
+    "main.js.map": "/static/js/main.ac0434dd.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.99338a8e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.99338a8e.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.28dc2250.chunk.js": "/static/js/2.28dc2250.chunk.js",
+    "static/js/2.28dc2250.chunk.js.map": "/static/js/2.28dc2250.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.b5fb9e8f.chunk.css.map": "/static/css/main.b5fb9e8f.chunk.css.map",
+    "static/js/2.28dc2250.chunk.js.LICENSE.txt": "/static/js/2.28dc2250.chunk.js.LICENSE.txt",
+    "static/media/global.scss": "/static/media/Warnes.42c84380.ttf",
+    "static/media/canvas-bg.e3dd7d7c.mp4": "/static/media/canvas-bg.e3dd7d7c.mp4",
+    "static/media/DrawCard.scss": "/static/media/graffiti.28f54fd1.jpg",
+    "static/media/letters.c5b5da50.mp4": "/static/media/letters.c5b5da50.mp4",
+    "static/media/logo-white.4a852212.svg": "/static/media/logo-white.4a852212.svg",
+    "static/media/logo.0c4b48ed.svg": "/static/media/logo.0c4b48ed.svg",
+    "static/media/mono-bg.cd8e4893.mp4": "/static/media/mono-bg.cd8e4893.mp4"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99338a8e.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.28dc2250.chunk.js",
+    "static/css/main.b5fb9e8f.chunk.css",
+    "static/js/main.ac0434dd.chunk.js"
+  ]
+}

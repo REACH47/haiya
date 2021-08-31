@@ -10,6 +10,7 @@ import { useAuth } from "../Contexts/AuthContext";
 import { io } from "socket.io-client";
 import logo from "../Assets/images/logo-white.svg";
 import Emailer from "../Components/Emailer/Emailer";
+import Instructions from "./Instructions/Instructions";
 
 export default function App({ currentFile }) {
   const excalidrawRef = useRef(null);
@@ -67,6 +68,8 @@ export default function App({ currentFile }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
+      <Instructions />
+
       <div className="App">
         <div className="App__logo-container">
           <img className="App__logo" src={logo} alt="haiya!" />
