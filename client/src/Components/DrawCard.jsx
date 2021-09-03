@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import Excalidraw from "@excalidraw/excalidraw";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { storage } from "../firebase";
 import { Form, Button, Modal, Image } from "react-bootstrap";
 import InitialData from "./initialData.js";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import "./DrawCard.scss";
-import { useAuth } from "../Contexts/AuthContext";
+// import { useAuth } from "../Contexts/AuthContext";
 import { io } from "socket.io-client";
 import logo from "../Assets/images/logo-white.svg";
 import Emailer from "../Components/Emailer/Emailer";
@@ -65,14 +66,16 @@ export default function App({ currentFile }) {
   return (
     <motion.div
       initial={{ opactiy: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: 5 }}
       exit={{ opacity: 0 }}
     >
       <Instructions />
 
       <div className="App">
         <div className="App__logo-container">
-          <img className="App__logo" src={logo} alt="haiya!" />
+          <Link to="/welcome">
+            <img className="App__logo" src={logo} alt="haiya!" />
+          </Link>
         </div>
 
         <div className="button-wrapper">
@@ -151,7 +154,7 @@ export default function App({ currentFile }) {
 
           <div className="export-wrapper button-wrapper">
             <button className="generate" type="submit" onClick={openModal}>
-              generate haiya! card link
+              generate haiya! card url
             </button>
             <Emailer />
             <Modal show={open} onHide={closeModal}>

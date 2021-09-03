@@ -22,7 +22,7 @@ function Welcome() {
         <div className="haiya__select">
           <div className="haiya__left">
             <Link className="haiya__link" to="/haiya">
-              <section class="animation">
+              <section className="animation">
                 <a>
                   <span className="text">start</span>
                   <span className="line -right"></span>

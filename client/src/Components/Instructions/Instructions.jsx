@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
+import "../../Components/Instructions/Instructions.scss";
 
 export default function Instructions() {
   const [open, setOpen] = useState(true);
@@ -18,7 +19,7 @@ export default function Instructions() {
         centered
       >
         <Modal.Body>
-          <h2 className="mt-5 link-text">welcome to haiya!</h2>
+          <h2 className="mt-5 link-text text-center">welcome to haiya!</h2>
           <h4 className="mt-4">how to haiya!</h4>
           <ul className="mt-2">
             <li>start drawing! use the toolbox and try different things!</li>

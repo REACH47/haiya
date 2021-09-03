@@ -60,7 +60,7 @@ export default function Emailer() {
           className="contact-form__input"
           type="url"
           name="image"
-          placeholder="haiya! card link here"
+          placeholder="haiya! card url here"
         />
 
         <textarea
