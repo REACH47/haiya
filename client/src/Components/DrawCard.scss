@@ -1,5 +1,9 @@
 @use '../styles/partials/variables' as *;
 
+.body {
+  font-family: "Courier New", Courier, monospace;
+}
+
 .App {
   background-image: url("../Assets/images/graffiti.jpg");
   background-size: cover;
