@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { v4 as uuidV4 } from "uuid";
 import canvas from "../../Assets/background/canvas-bg.mp4";
 import logo from "../../Assets/images/logo.svg";
 import "../Welcome/Welcome.scss";
@@ -20,10 +21,10 @@ function Welcome() {
         <img className="haiya__logo" src={logo} />
         <div className="haiya__select">
           <div className="haiya__left">
-            <Link className="haiya__link" to="/signup">
+            <Link className="haiya__link" to="/haiya">
               <section class="animation">
                 <a>
-                  <span className="text">get started</span>
+                  <span className="text">start</span>
                   <span className="line -right"></span>
                   <span className="line -top"></span>
                   <span className="line -left"></span>

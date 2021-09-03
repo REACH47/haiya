@@ -23,7 +23,7 @@ export default function App({ currentFile }) {
   const [name, setName] = useState("");
   const [file, setFile] = useState(null);
   const [url, setURL] = useState("");
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   const [s, setSocket] = useState();
 
   useEffect(() => {

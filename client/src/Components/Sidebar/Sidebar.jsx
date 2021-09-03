@@ -6,19 +6,19 @@ import "./Sidebar.scss";
 export default function Sidebar(props) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
+  // const { currentUser, logout } = useAuth();
   const history = useHistory();
 
-  async function handleLogout() {
-    setError("");
+  // async function handleLogout() {
+  //   setError("");
 
-    try {
-      await logout();
-      history.push("/login");
-    } catch {
-      setError("Failed to log out");
-    }
-  }
+  //   try {
+  //     await logout();
+  //     history.push("/login");
+  //   } catch {
+  //     setError("Failed to log out");
+  //   }
+  // }
 
   return (
     <>
@@ -27,12 +27,9 @@ export default function Sidebar(props) {
           x
         </button>
         <div className="sidebar-wrapper">
-          <Link to="/dashboard">
+          <Link to="/welcome">
             <button className="home-btn">home</button>
           </Link>
-          <button className="logout-btn" onClick={handleLogout}>
-            good bye!
-          </button>
         </div>
       </div>
       <div className={`${open ? "sidebar-open" : ""}`}>

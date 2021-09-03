@@ -32,7 +32,7 @@ function App() {
 
             <Route path="/welcome" component={Welcome} />
 
-            <AuthProvider>
+            {/* <AuthProvider>
               <Route path="/signup">
                 <Container
                   className="d-flex align-items-center justify-content-center"
@@ -42,9 +42,9 @@ function App() {
                     <Signup />
                   </div>
                 </Container>
-              </Route>
+              </Route> */}
 
-              <PrivateRoute path="/dashboard" component={Dashboard} />
+            {/* <PrivateRoute path="/dashboard" component={Dashboard} />
 
               <PrivateRoute path="/update-profile">
                 <Container
@@ -55,9 +55,9 @@ function App() {
                     <UpdateProfile />
                   </div>
                 </Container>
-              </PrivateRoute>
+              </PrivateRoute> */}
 
-              <Route path="/login">
+            {/* <Route path="/login">
                 <Container
                   className="d-flex align-items-center justify-content-center"
                   style={{ minHeight: "100vh" }}
@@ -66,24 +66,28 @@ function App() {
                     <Login />
                   </div>
                 </Container>
-              </Route>
+              </Route> */}
 
-              <Route path="/forgot-password">
-                <Container
-                  className="d-flex align-items-center justify-content-center"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <div className="w-100" style={{ maxWidth: "400px" }}>
-                    <ForgotPassword />
-                  </div>
-                </Container>
-              </Route>
+            {/* <Route path="/forgot-password">
+              <Container
+                className="d-flex align-items-center justify-content-center"
+                style={{ minHeight: "100vh" }}
+              >
+                <div className="w-100" style={{ maxWidth: "400px" }}>
+                  <ForgotPassword />
+                </div>
+              </Container>
+            </Route>
 
-              <PrivateRoute path="/haiya">
-                <Redirect to={`/haiya/${uuidV4()}`} />
-              </PrivateRoute>
-              <PrivateRoute path="/haiya/:id" component={DrawCard} />
-            </AuthProvider>
+            <PrivateRoute path="/haiya">
+              <Redirect to={`/haiya/${uuidV4()}`} />
+            </PrivateRoute>
+            <PrivateRoute path="/haiya/:id" component={DrawCard} />
+            </AuthProvider> */}
+            <Route path="/haiya" exact>
+              <Redirect to={`/haiya/${uuidV4()}`} />
+            </Route>
+            <Route path="/haiya/:id" component={DrawCard} />
           </Switch>
         </AnimatePresence>
       </Router>
